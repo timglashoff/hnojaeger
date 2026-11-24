@@ -155,12 +155,12 @@ unbemerkt einen zweiten Worker anzulegen.
 | Deploy-Befehl | `npx wrangler deploy` |
 | Branch | `main` |
 
-Die Testadresse des Workers haengt am Konto, nicht am Projekt: Seit dem Umzug
-in das Konto `info@timandco.de` lautet sie
-`https://hnojaeger.casa-bianca-sylt.workers.dev`. Unter der alten Adresse
-`hnojaeger.glashoff.workers.dev` laeuft der Worker des frueheren Kontos
-weiter — wer sie noch irgendwo verlinkt hat, sieht dort einen eingefrorenen
-Stand.
+Die Testadresse des Workers haengt am Konto, nicht am Projekt:
+`https://hnojaeger.timandco.workers.dev`. Die Subdomain gilt fuer alle Worker
+des Kontos `info@timandco.de` — wird sie dort umbenannt, aendert sich diese
+Adresse mit. Unter `hnojaeger.glashoff.workers.dev` laeuft der Worker des
+frueheren Kontos weiter und zeigt einen eingefrorenen Stand; diese Adresse
+steht noch in aelteren Mails an die Kundin.
 
 Danach die Domain `hnojaeger.de` samt `www.` als Custom Domain auf den Worker
 zeigen lassen; die Weiterleitung `www` → Hauptdomain wird dort als Redirect-Regel
