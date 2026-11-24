@@ -10,9 +10,16 @@
   // still einen zweiten Worker anzulegen.
   "account_id": "3a73d9fc0be017b56baa90d27b702b00",
 
-  // Kein "build"-Hook: Gebaut wird vorher, in der Cloudflare-CI ueber den
-  // Build-Befehl "npm run build", lokal ueber "npm run deploy". Stuende der
-  // Hook zusaetzlich hier, liefe der Build in der CI zweimal.
+  // Der Build steht hier und nicht im Cloudflare-Dashboard: Eine Einstellung
+  // im Dashboard haengt am Konto und ist beim Umzug nicht mitgekommen - der
+  // erste Build im neuen Konto lief ohne "npm run build" los und fand kein
+  // ./dist. Im Repo reist die Angabe mit. scnnorddoerfer haelt es genauso.
+  // Dafuer muss der Build-Befehl in den Workers Builds leer bleiben, sonst
+  // baut die CI zweimal.
+  "build": {
+    "command": "npm run build",
+    "watch_dir": "src"
+  },
 
   // Reines Static-Asset-Deployment: kein Worker-Script noetig.
   // "auto-trailing-slash" passt zu trailingSlash: 'always' und

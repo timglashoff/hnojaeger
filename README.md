@@ -132,11 +132,15 @@ Static-Asset-Deployment — es gibt kein Worker-Script, nur den Ordner `dist`.
 npm run deploy
 ```
 
-Das Script baut zuerst nach `dist/` und ruft dann `wrangler deploy` auf, das den
-Ordner hochlädt. Gebaut wird bewusst außerhalb von `wrangler.jsonc`: In den
-Cloudflare Workers Builds erledigt das der Build-Befehl `npm run build`, und ein
-zusätzlicher `build.command` in der Wrangler-Konfiguration würde den Build dort
-ein zweites Mal laufen lassen.
+Ein separater `npm run build` davor ist nicht nötig: `wrangler.jsonc` enthält
+einen `build.command`, den Wrangler vor jedem Deploy ausführt. Deshalb genügt in
+den Cloudflare Workers Builds als Deploy-Befehl ebenfalls `npx wrangler deploy`,
+und der Build-Befehl im Dashboard bleibt **leer** — stünde er dort zusätzlich,
+liefe der Build zweimal.
+
+Dass die Angabe im Repo steht und nicht im Dashboard, hat einen Grund: Beim
+Wechsel des Cloudflare-Kontos kommt eine Dashboard-Einstellung nicht mit. Der
+erste Build im neuen Konto schlug genau daran fehl.
 
 Beim ersten lokalen Deploy fragt Wrangler nach dem Cloudflare-Login; die
 Anmeldung laeuft ueber den Standardbrowser und haelt einige Wochen. Das Konto
@@ -151,7 +155,7 @@ unbemerkt einen zweiten Worker anzulegen.
 | Repository | `timglashoff/hnojaeger` |
 | Projektname / Worker | `hnojaeger` |
 | Root-Verzeichnis | `/` |
-| Build-Befehl | `npm run build` |
+| Build-Befehl | *leer* (steht in `wrangler.jsonc`) |
 | Deploy-Befehl | `npx wrangler deploy` |
 | Branch | `main` |
 

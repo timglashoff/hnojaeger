@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build && node scripts/varianten-aus-dist-entfernen.mjs",
     "preview": "astro preview",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "wrangler deploy",
     "astro": "astro"
   },
   "dependencies": {
