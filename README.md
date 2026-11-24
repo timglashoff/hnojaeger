@@ -138,18 +138,29 @@ Cloudflare Workers Builds erledigt das der Build-Befehl `npm run build`, und ein
 zusätzlicher `build.command` in der Wrangler-Konfiguration würde den Build dort
 ein zweites Mal laufen lassen.
 
-Beim ersten lokalen Deploy fragt Wrangler nach dem Cloudflare-Login.
+Beim ersten lokalen Deploy fragt Wrangler nach dem Cloudflare-Login; die
+Anmeldung laeuft ueber den Standardbrowser und haelt einige Wochen. Das Konto
+(`info@timandco.de`) steht als `account_id` in `wrangler.jsonc` — ein Deploy
+aus einer Anmeldung in einem anderen Konto schlaegt damit fehl, statt
+unbemerkt einen zweiten Worker anzulegen.
 
 ### Workspace in Cloudflare anlegen
 
 | Feld | Wert |
 |---|---|
-| Repository | `beon-glashoff/hnojaeger` |
+| Repository | `timglashoff/hnojaeger` |
 | Projektname / Worker | `hnojaeger` |
 | Root-Verzeichnis | `/` |
 | Build-Befehl | `npm run build` |
 | Deploy-Befehl | `npx wrangler deploy` |
 | Branch | `main` |
+
+Die Testadresse des Workers haengt am Konto, nicht am Projekt: Seit dem Umzug
+in das Konto `info@timandco.de` lautet sie
+`https://hnojaeger.casa-bianca-sylt.workers.dev`. Unter der alten Adresse
+`hnojaeger.glashoff.workers.dev` laeuft der Worker des frueheren Kontos
+weiter — wer sie noch irgendwo verlinkt hat, sieht dort einen eingefrorenen
+Stand.
 
 Danach die Domain `hnojaeger.de` samt `www.` als Custom Domain auf den Worker
 zeigen lassen; die Weiterleitung `www` → Hauptdomain wird dort als Redirect-Regel

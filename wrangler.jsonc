@@ -3,6 +3,13 @@
   "name": "hnojaeger",
   "compatibility_date": "2026-09-17",
 
+  // Das Konto steht hier fest, nicht nur in der lokalen Wrangler-Anmeldung:
+  // Wer in mehreren Cloudflare-Konten angemeldet ist, deployt sonst dorthin,
+  // wo der Token gerade haengt — bei einer Arztseite der teuerste Fehler.
+  // Passt die ID nicht zum angemeldeten Konto, bricht wrangler ab, statt
+  // still einen zweiten Worker anzulegen.
+  "account_id": "3a73d9fc0be017b56baa90d27b702b00",
+
   // Kein "build"-Hook: Gebaut wird vorher, in der Cloudflare-CI ueber den
   // Build-Befehl "npm run build", lokal ueber "npm run deploy". Stuende der
   // Hook zusaetzlich hier, liefe der Build in der CI zweimal.
